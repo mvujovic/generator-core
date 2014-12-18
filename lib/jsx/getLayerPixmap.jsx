@@ -218,4 +218,13 @@ if (params.boundsOnly) {
 }
 actionDescriptor.putBoolean(stringIDToTypeID("bounds"), params.bounds);
 
+
+if (params.hasOwnProperty("convert")) {
+    var convertArgs = new ActionList();
+    for (var i = 0; i < params.convert.length; i++) {
+        convertArgs.putString(params.convert[i]);
+    }
+    actionDescriptor.putList(stringIDToTypeID("convert"), convertArgs);
+}
+
 executeAction(stringIDToTypeID("sendLayerThumbnailToNetworkClient"), actionDescriptor, DialogModes.NO);
