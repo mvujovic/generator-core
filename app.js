@@ -285,7 +285,26 @@
             function (err) {
                 stop(-3, "Generator failed to initialize: " + err);
             }
-        );
+        ).then(function(generator) {
+            function getDocumentInfo() {
+                for (var i = 0; i < 10000; i++) {
+                    (function(j) {
+                        generator
+                            .getDocumentInfo(undefined, {selectedLayers : false})
+                            .then(function(document) {
+                                console.log(j, document);
+                            })
+                            .catch(function(e) {
+                                console.log(e)
+                            });
+                    })(i);
+                }
+
+                // setTimeout(getDocumentInfo, 5000);   
+            };
+
+            getDocumentInfo();
+        });
     }
 
     process.on("uncaughtException", function (err) {
