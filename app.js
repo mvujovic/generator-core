@@ -287,7 +287,7 @@
             }
         ).then(function(generator) {
             function getDocumentInfo() {
-                for (var i = 0; i < 10000; i++) {
+                for (var i = 0; i < 1; i++) {
                     (function(j) {
                         generator
                             .getDocumentInfo(undefined, {selectedLayers : false})
@@ -300,7 +300,7 @@
                     })(i);
                 }
 
-                // setTimeout(getDocumentInfo, 5000);   
+                setTimeout(getDocumentInfo, 5000);   
             };
 
             getDocumentInfo();
